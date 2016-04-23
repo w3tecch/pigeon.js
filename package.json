@@ -1,0 +1,20 @@
+{
+  "name": "event-bus",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/event-bus.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "TypeScript",
+    "Events",
+    "JavaScript"
+  ],
+  "author": "gery.hirschfeld@w3tec.ch",
+  "license": "MIT",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "typescript": "^1.8.10"
+  }
+}
