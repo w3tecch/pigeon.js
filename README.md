@@ -1,10 +1,8 @@
-[![Build Status](https://travis-ci.org/hirsch88/ngOneTsWebpack.svg?branch=master)](https://travis-ci.org/hirsch88/ngOneTsWebpack)
-[![Dependency Status](https://david-dm.org/hirsch88/ngOneTsWebpack.svg)](https://david-dm.org/hirsch88/ngOneTsWebpack)
-[![devDependency Status](https://david-dm.org/hirsch88/ngOneTsWebpack/dev-status.svg)](https://david-dm.org/hirsch88/ngOneTsWebpack#info=devDependencies)
+[![Build Status](https://travis-ci.org/w3tecch/event-bus.svg?branch=master)](https://travis-ci.org/w3tecch/event-bus)
+[![Dependency Status](https://david-dm.org/w3tecch/event-bus.svg)](https://david-dm.org/w3tecch/event-bus)
+[![devDependency Status](https://david-dm.org/w3tecch/event-bus/dev-status.svg)](https://david-dm.org/w3tecch/event-bus#info=devDependencies)
 
-#ngOneTsWebpack
-
-**AngularJS 1.x + TypeScript + Karma + Webpack**
+#event-bus
 
 ###Quick start
 
