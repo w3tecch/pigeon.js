@@ -3,16 +3,40 @@ var gulp = require('gulp'),
     $    = require('gulp-load-plugins')({lazy: true});
 
 var pkg = require(path.join(process.cwd(), 'package.json'));
+
+var banner = '/*\n' +
+  ' * <%= pkg.name %> <%= pkg.version %>\n' +
+  ' * <%= pkg.description %>\n' +
+  ' * <%= pkg.homepage %>\n' +
+  ' *\n' +
+  ' * Copyright 2015, <%= pkg.author %>\n' +
+  ' * Released under the <%= pkg.license %> license.\n' +
+  '*/\n\n';
+
+/***********************************************************************************
+ * RUN
+ ***********************************************************************************/
+gulp.task('watch', ['build-all'], function () {
+  gulp.watch('lib/**/*.ts', ['test']);
+  gulp.watch('test/**/*.ts', ['test']);
+});
+
+/***********************************************************************************
+ * BUILD
+ ***********************************************************************************/
+gulp.task('build', [
+  'uglify'
+]);
+
 /***********************************************************************************
  * TSLINT
  ***********************************************************************************/
-gulp.task('ts-lint', function () {
-  return gulp.src('lib/**/*.ts')
+gulp.task('ts-lint', ['clean'], function () {
+  return gulp.src(['lib/**/*.ts', 'test/**/*.ts'])
     .pipe($.plumber())
     .pipe($.tslint())
     .pipe($.tslint.report('verbose'));
 });
-
 /***********************************************************************************
  * TYPESCRIPT
  ***********************************************************************************/
@@ -21,45 +45,62 @@ var tsProject = $.typescript.createProject(process.cwd() + '/tsconfig.json', {
   typescript: typescript
 });
 
-gulp.task('ts-compile', ['ts-lint'], function (done) {
-  var tsconfig = {
-    noImplicitAny: false,
-    removeComments: true,
-    noEmitOnError: true,
-    preserveConstEnums: true,
-    sourceMap: false,
-    declaration: false,
-    noResolve: true,
-    target: 'es5'
-  };
-  tsconfig.out = pkg.name;
-  var scripts = 'lib/**/*.ts';
+gulp.task('ts-compile-lib', ['ts-compile-test', 'ts-lint'], function () {
+  var tsResult = gulp.src('lib/*.ts')
+    .pipe($.typescript(tsProject));
 
-  var tsResult = gulp.src(scripts, {
-      base: '.'
-    })
-    .pipe($.sourcemaps.init()) // This means sourcemaps will be generated
-    .pipe($.typescript({
-      target: 'es5',
-      sortOutput: true,
-      removeComments: true,
-      noEmitOnError: true
-    }));
-
-  tsResult.js
-    .pipe($.concat(pkg.name + '.debug.js')) // You can use other plugins that also support gulp-sourcemaps
-    .pipe($.sourcemaps.write()) // Now the sourcemaps are added to the .js file
-    .pipe(gulp.dest('dist'))
-    .on('end', function () {
-      done();
-    });
-
+  return tsResult.js
+    .pipe($.banner(banner, {
+      pkg: pkg
+    }))
+    .pipe($.sourcemaps.init())
+    .pipe($.concat(pkg.name + '.js'))
+    .pipe($.sourcemaps.write('./'))
+    .pipe(gulp.dest('dist'));
 });
+
+gulp.task('ts-compile-test', ['ts-lint'], function () {
+  var tsResult = gulp.src('test/*.ts')
+    .pipe($.typescript(tsProject));
+
+  return tsResult.js
+    .pipe($.sourcemaps.init())
+    .pipe($.concat(pkg.name + '.js'))
+    .pipe($.sourcemaps.write())
+    .pipe(gulp.dest('test'));
+});
+
+/***********************************************************************************
+ * MIN
+ ***********************************************************************************/
+gulp.task('uglify', ['ts-compile-lib'], function () {
+  gulp.src('./dist/' + pkg.name + '.js')
+    .pipe($.uglify())
+    .pipe($.rename(pkg.name + '.min.js'))
+    .pipe($.banner(banner, {
+      pkg: pkg
+    }))
+    .pipe(gulp.dest('dist/'))
+});
+
 
 /***********************************************************************************
  * CLEAN
  ***********************************************************************************/
-gulp.task('clean-dist', function () {
-  return gulp.src('./dist', {read: false})
+gulp.task('clean', function () {
+  return gulp.src(['./dist', './test/**/*.js'], {read: false})
     .pipe($.clean());
+});
+
+/***********************************************************************************
+ * TEST
+ ***********************************************************************************/
+gulp.task('test', ['build'], function () {
+  return gulp
+    .src('test/**/*.spec.js', {
+      read: false
+    })
+    .pipe($.mocha({
+      reporter: 'spec'
+    }));
 });
