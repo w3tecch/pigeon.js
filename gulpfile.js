@@ -1,4 +1,5 @@
 var gulp = require('gulp'),
+    path = require('path'),
     $    = require('gulp-load-plugins')({lazy: true});
 
 var pkg = require(path.join(process.cwd(), 'package.json'));
@@ -21,9 +22,18 @@ var tsProject = $.typescript.createProject(process.cwd() + '/tsconfig.json', {
 });
 
 gulp.task('ts-compile', ['ts-lint'], function (done) {
-  var tsconfig = gulpConfig.typescript;
+  var tsconfig = {
+    noImplicitAny: false,
+    removeComments: true,
+    noEmitOnError: true,
+    preserveConstEnums: true,
+    sourceMap: false,
+    declaration: false,
+    noResolve: true,
+    target: 'es5'
+  };
   tsconfig.out = pkg.name;
-  var scripts = gulpConfig.paths.scripts;
+  var scripts = 'lib/**/*.ts';
 
   var tsResult = gulp.src(scripts, {
       base: '.'

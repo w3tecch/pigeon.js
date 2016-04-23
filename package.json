@@ -40,6 +40,14 @@
     "sinon-chai": "^2.6.0",
     "tslint": "^3.7.1",
     "typescript": "^1.8.10",
-    "typings": "^0.7.12"
+    "typings": "^0.7.12",
+    "gulp-clean": "^0.3.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-template": "^3.0.0",
+    "gulp-tslint": "^2.0.0",
+    "gulp-typescript": "^2.7.5",
+    "path": "^0.12.7",
+    "wiredep": "^2.2.2"
   }
 }
