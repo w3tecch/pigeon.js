@@ -1,45 +1,55 @@
-var helpers = require(process.cwd() + '/webpack.helpers.js');
-var gulp = require('gulp');
-var typedoc = require('gulp-typedoc');
-var connect = require('gulp-connect');
-var taskListing = require('gulp-task-listing');
+var gulp = require('gulp'),
+    $    = require('gulp-load-plugins')({lazy: true});
 
-/**
- * TASKLISTING
- * List the available gulp tasks
- */
-gulp.task('help', taskListing);
-
-/**
- * DOCS
- * Builds the docs for the your typescript application
- */
-gulp.task('docs', ['docs-build'], function () {
-  startServer('docs', 3001);
+var pkg = require(path.join(process.cwd(), 'package.json'));
+/***********************************************************************************
+ * TSLINT
+ ***********************************************************************************/
+gulp.task('ts-lint', function () {
+  return gulp.src('lib/**/*.ts')
+    .pipe($.plumber())
+    .pipe($.tslint())
+    .pipe($.tslint.report('verbose'));
 });
 
-gulp.task('docs-build', buildDocs);
+/***********************************************************************************
+ * TYPESCRIPT
+ ***********************************************************************************/
+var typescript = require('typescript');
+var tsProject = $.typescript.createProject(process.cwd() + '/tsconfig.json', {
+  typescript: typescript
+});
 
+gulp.task('ts-compile', ['ts-lint'], function (done) {
+  var tsconfig = gulpConfig.typescript;
+  tsconfig.out = pkg.name;
+  var scripts = gulpConfig.paths.scripts;
 
-//---------------------------------------------------------------------------
-function startServer(root, port) {
-  connect.server({
-    root: root,
-    livereload: true,
-    port: port
-  });
-}
-
-function buildDocs() {
-  return gulp
-    .src([
-      'src/**/*.ts',
-      'typings/browser.d.ts'
-    ])
-    .pipe(typedoc({
-      module: 'commonjs',
-      target: 'es6',
-      out: 'docs/',
-      name: helpers.getPkg().name
+  var tsResult = gulp.src(scripts, {
+      base: '.'
+    })
+    .pipe($.sourcemaps.init()) // This means sourcemaps will be generated
+    .pipe($.typescript({
+      target: 'es5',
+      sortOutput: true,
+      removeComments: true,
+      noEmitOnError: true
     }));
-}
+
+  tsResult.js
+    .pipe($.concat(pkg.name + '.debug.js')) // You can use other plugins that also support gulp-sourcemaps
+    .pipe($.sourcemaps.write()) // Now the sourcemaps are added to the .js file
+    .pipe(gulp.dest('dist'))
+    .on('end', function () {
+      done();
+    });
+
+});
+
+/***********************************************************************************
+ * CLEAN
+ ***********************************************************************************/
+gulp.task('clean-dist', function () {
+  return gulp.src('./dist', {read: false})
+    .pipe($.clean());
+});
