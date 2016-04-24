@@ -8,8 +8,6 @@
 
 #Table of Content
 
-#File Structure
-
 #Getting Started
 
 ##Installing
@@ -19,9 +17,6 @@
 ##Test
 
 ##Other Commands
-
-#Usefull Libraries
-- 
 
 #License
 
