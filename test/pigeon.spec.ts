@@ -1,5 +1,3 @@
-/// <reference path="../typings/main.d.ts"/>
-
 import * as chai from 'chai';
 export const expect = chai.expect;
 // export const assert = chai.assert;

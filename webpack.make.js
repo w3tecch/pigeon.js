@@ -37,7 +37,8 @@ module.exports = function makeWebpackConfig(options) {
     config.entry = {}
   } else {
     config.entry = {
-      'pigeon': './lib/pigeon.ts'
+      'pigeon': './lib/pigeon.ts',
+      'pigeon.min': './lib/pigeon.ts'
     };
   }
 
@@ -176,6 +177,7 @@ module.exports = function makeWebpackConfig(options) {
       // Reference: http://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
       // Minify all javascript, switch loaders to minimizing mode
       new webpack.optimize.UglifyJsPlugin({
+        include: /\.min\.js$/,
         mangle: {
           // You can specify all variables that should not be mangled.
           // For example if your vendor dependency doesn't use modules
