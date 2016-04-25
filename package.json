@@ -8,10 +8,6 @@
     "url": "git://github.com/w3tecch/pigeon.js.git"
   },
   "scripts": {
-    "gstart": "gulp watch",
-    "gtest": "gulp test",
-    "gbuild": "gulp build",
-    "gclean": "gulp clean",
     "build": "npm run build:dev",
     "build:dev": "./node_modules/.bin/webpack --config webpack.build.js --progress --profile --colors --display-error-details --display-cached --env",
     "build:prod": "./node_modules/.bin/webpack --config webpack.build.js --progress --profile --colors --display-error-details --display-cached --env prod",
@@ -19,8 +15,9 @@
     "test:live": "./node_modules/.bin/karma start --auto-watch --no-single-run"
   },
   "keywords": [
-    "TypeScript",
     "Events",
+    "Event-bus",
+    "TypeScript",
     "JavaScript"
   ],
   "author": "gery.hirschfeld@w3tec.ch",
