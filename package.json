@@ -4,9 +4,15 @@
   "description": "",
   "main": "dist/event-bus.min.js",
   "scripts": {
+    "gstart": "gulp watch",
+    "gtest": "gulp test",
+    "gbuild": "gulp build",
+    "gclean": "gulp clean",
+    "build": "npm run build:dev",
+    "build:dev": "./node_modules/.bin/webpack --config webpack.build.js --progress --profile --colors --display-error-details --display-cached --env",
+    "build:prod": "./node_modules/.bin/webpack --config webpack.build.js --progress --profile --colors --display-error-details --display-cached --env prod",
     "test": "./node_modules/.bin/karma start",
-    "build": "gulp build",
-    "clean": "gulp clean"
+    "test:live": "./node_modules/.bin/karma start --auto-watch --no-single-run"
   },
   "keywords": [
     "TypeScript",
@@ -28,12 +34,22 @@
     "gulp-plumber": "^1.1.0",
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^1.6.0",
-    "gulp-template": "^3.0.0",
     "gulp-tslint": "^2.0.0",
     "gulp-typescript": "^2.7.5",
     "gulp-uglify": "^1.5.3",
-    "gulp-uglifyjs": "^0.6.2",
-    "karma": "^0.13.22",
+    "mocha": "^2.4.5",
+    "path": "^0.12.7",
+    "sinon": "^1.17.3",
+    "sinon-chai": "^2.6.0",
+    "ts-loader": "^0.8.2",
+    "tslint": "^3.7.1",
+    "tslint-loader": "^2.1.3",
+    "typescript": "^1.8.10",
+    "typings": "^0.7.12",
+    "webpack": "^1.13.0",
+    "yargs": "^4.6.0",
+    "karma": "^0.13.21",
+    "karma-chai": "^0.1.0",
     "karma-chai-sinon": "^0.1.3",
     "karma-chrome-launcher": "^0.2.2",
     "karma-coverage": "^0.5.3",
@@ -46,13 +62,6 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-spec-reporter": "0.0.23",
     "karma-typescript-preprocessor2": "^1.1.1",
-    "mocha": "^2.4.5",
-    "path": "^0.12.7",
-    "sinon": "^1.17.3",
-    "sinon-chai": "^2.6.0",
-    "tslint": "^3.7.1",
-    "typescript": "^1.8.10",
-    "typings": "^0.7.12",
-    "wiredep": "^2.2.2"
+    "karma-webpack": "^1.7.0"
   }
 }

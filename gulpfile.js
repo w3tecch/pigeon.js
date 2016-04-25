@@ -16,7 +16,7 @@ var banner = '/*\n' +
 /***********************************************************************************
  * RUN
  ***********************************************************************************/
-gulp.task('watch', ['build-all'], function () {
+gulp.task('watch', ['build'], function () {
   gulp.watch('lib/**/*.ts', ['test']);
   gulp.watch('test/**/*.ts', ['test']);
 });
@@ -97,7 +97,7 @@ gulp.task('clean', function () {
  ***********************************************************************************/
 gulp.task('test', ['build'], function () {
   return gulp
-    .src('test/**/*.spec.js', {
+    .src('./test/**/*.spec.js', {
       read: false
     })
     .pipe($.mocha({
