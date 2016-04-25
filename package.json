@@ -1,8 +1,12 @@
 {
-  "name": "event-bus",
+  "name": "pigeon",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/event-bus.min.js",
+  "main": "dist/pigeon.min.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/w3tecch/pigeon.js.git"
+  },
   "scripts": {
     "gstart": "gulp watch",
     "gtest": "gulp test",
@@ -20,6 +24,12 @@
     "JavaScript"
   ],
   "author": "gery.hirschfeld@w3tec.ch",
+  "contributors": [
+    {
+      "name": "David Weber",
+      "url": "http://github.com/dweber19"
+    }
+  ],
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
