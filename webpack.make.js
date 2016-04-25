@@ -37,7 +37,7 @@ module.exports = function makeWebpackConfig(options) {
     config.entry = {}
   } else {
     config.entry = {
-      'event-bus': './lib/event-bus.ts'
+      'pigeon': './lib/pigeon.ts'
     };
   }
 

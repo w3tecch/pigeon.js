@@ -7,6 +7,6 @@
  any file that ends with spec.js and get its path. By passing in true
  we say do this recursively
  */
-require('./lib/event-bus.ts');
+require('./lib/pigeon.ts');
 var testsContext = require.context('./test', true, /.spec.ts$/);
 testsContext.keys().forEach(testsContext);
