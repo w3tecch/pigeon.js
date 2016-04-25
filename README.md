@@ -2,7 +2,7 @@
 [![Dependency Status](https://david-dm.org/w3tecch/event-bus.svg)](https://david-dm.org/w3tecch/event-bus)
 [![devDependency Status](https://david-dm.org/w3tecch/event-bus/dev-status.svg)](https://david-dm.org/w3tecch/event-bus#info=devDependencies)
 
-#event-bus
+#Pigeon.js
 
 ###Quick start
 
