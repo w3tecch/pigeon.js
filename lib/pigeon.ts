@@ -40,5 +40,3 @@ export class Pigeon {
     };
   }
 }
-
-export var pigeon = new Pigeon();
