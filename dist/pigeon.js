@@ -1,6 +1,6 @@
 /*!
  *  @name           pigeonjs
- *  @description    
+ *  @description    This is an in-memory message bus. Very slim and fast
  * 
  *  @version        0.0.0
  *  @author         gery.hirschfeld@w3tec.ch
@@ -101,30 +101,32 @@
 	 */
 	var PigeonChannel = (function () {
 	    function PigeonChannel(name) {
-	        this.name = '';
 	        this.callbacks = {};
 	        this.name = name;
 	    }
-	    PigeonChannel.prototype.list = function () {
+	    PigeonChannel.prototype.getName = function () {
+	        return this.name;
+	    };
+	    PigeonChannel.prototype.getList = function () {
 	        return this.callbacks;
 	    };
-	    PigeonChannel.prototype.publish = function (channel) {
+	    PigeonChannel.prototype.publish = function (item) {
 	        var _this = this;
 	        return function () {
 	            var args = [];
 	            for (var _i = 0; _i < arguments.length; _i++) {
 	                args[_i - 0] = arguments[_i];
 	            }
-	            var callbacks = _this.callbacks[channel] || [];
+	            var callbacks = _this.callbacks[item] || [];
 	            var size = callbacks.length;
 	            callbacks.forEach(function (cb) { return cb.apply(void 0, args); });
 	            return size < callbacks.length;
 	        };
 	    };
-	    PigeonChannel.prototype.subscribe = function (channel) {
+	    PigeonChannel.prototype.subscribe = function (item) {
 	        var _this = this;
 	        return function (callback) {
-	            var callbacks = _this.callbacks[channel] || (_this.callbacks[channel] = []);
+	            var callbacks = _this.callbacks[item] || (_this.callbacks[item] = []);
 	            callbacks.push(callback);
 	            // destroy function
 	            return function () {
@@ -133,7 +135,7 @@
 	                    callbacks.splice(idx, 1);
 	                }
 	                if (callbacks.length === 0) {
-	                    delete _this.callbacks[channel];
+	                    delete _this.callbacks[item];
 	                }
 	                return idx >= 0;
 	            };
