@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/w3tecch/event-bus.svg?branch=master)](https://travis-ci.org/w3tecch/event-bus)
-[![Dependency Status](https://david-dm.org/w3tecch/event-bus.svg)](https://david-dm.org/w3tecch/event-bus)
-[![devDependency Status](https://david-dm.org/w3tecch/event-bus/dev-status.svg)](https://david-dm.org/w3tecch/event-bus#info=devDependencies)
+[![Build Status](https://travis-ci.org/w3tecch/pigeon.js.svg?branch=master)](https://travis-ci.org/w3tecch/pigeon.js)
+[![Dependency Status](https://david-dm.org/w3tecch/pigeon.js.svg)](https://david-dm.org/w3tecch/pigeon.js)
+[![devDependency Status](https://david-dm.org/w3tecch/pigeon.js/dev-status.svg)](https://david-dm.org/w3tecch/pigeon.js#info=devDependencies)
 
 #Pigeon.js
 
