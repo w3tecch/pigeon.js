@@ -8,16 +8,19 @@
 
 #Install
 ##npm
+
 ```
 npm install pigeonjs
 ```
-Add a <script> to your index.html:
+
+Add a <script> to your index.html
+
 ```
 <script src="node_modules/pigeonjs/dist/pigeon.js"></script>
 ```
+
 ##bower
 WIP
-
 
 #How to use
 ```
