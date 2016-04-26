@@ -12,7 +12,7 @@
     "build": "npm run build:dev",
     "build:dev": "./node_modules/.bin/webpack --config webpack.build.js --progress --profile --colors --display-error-details --display-cached --env",
     "build:prod": "./node_modules/.bin/webpack --config webpack.build.js --progress --profile --colors --display-error-details --display-cached --env prod",
-    "test": "./node_modules/.bin/karma start",
+    "test": "./node_modules/.bin/karma start --no-auto-watch --single-run",
     "test:live": "./node_modules/.bin/karma start --auto-watch --no-single-run"
   },
   "keywords": [
