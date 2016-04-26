@@ -20,9 +20,9 @@ class PigeonChannel implements pigeon.IChannel {
     return this.callbacks;
   }
 
-  public publish(channel: string): (...args) => boolean {
+  public publish(item: string): (...args) => boolean {
     return (...args) => {
-      let callbacks = this.callbacks[channel] || [];
+      let callbacks = this.callbacks[item] || [];
       let size = callbacks.length;
       callbacks.forEach(cb => cb(...args));
       return size < callbacks.length;

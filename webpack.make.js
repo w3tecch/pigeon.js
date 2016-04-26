@@ -134,6 +134,10 @@ module.exports = function makeWebpackConfig(options) {
     resourcePath: 'src'
   };
 
+  config.module.noParse = [
+    /\/sinon.js/
+  ];
+
   /**
    * Plugins
    * Reference: http://webpack.github.io/docs/configuration.html#plugins

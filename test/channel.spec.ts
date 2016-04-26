@@ -1,6 +1,8 @@
 import * as chai from 'chai';
+import * as sinon from 'sinon';
+
 export const expect = chai.expect;
-export const should = chai.should();
+// export const should = chai.should();
 
 import {pigeon} from './../index.ts';
 
@@ -25,5 +27,16 @@ describe('channel.ts', () => {
     });
   });
 
+  describe('#subscribe()', () => {
+
+    it('open new event bus on the channel', () => {
+      let cb = sinon.spy();
+      console.log(cb);
+      // channelOne.subscribe('item:test', callback);
+      // expect(channelOne.getList()).to.be.not.empty;
+      //assert(callback.called);
+    });
+
+  });
 
 });
