@@ -4,4 +4,4 @@ node_js:
 
 notifications:
   email: true
-  hipchat: f48dd51258b5e05c868a79b1e9f426@w3tecch/2679708
+  hipchat: f48dd51258b5e05c868a79b1e9f426@2679708
