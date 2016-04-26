@@ -31,7 +31,7 @@ let disposer = channel.subscribe('user:create')(() => {...});
 disposer();
 
 // Publish your message or date
-channel.publish('test')('an example message');
+channel.publish('user:create')('an example message');
 ```
 
 #License
