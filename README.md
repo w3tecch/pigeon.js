@@ -8,13 +8,9 @@
 
 #Install
 ##npm
-
 ```
 npm install pigeonjs
 ```
-
-Add a <script> to your index.html
-
 
 ##bower
 WIP
