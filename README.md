@@ -6,23 +6,11 @@
 
 #Pigeon.js
 
-###Quick start
+#How to use
+```
 
-#Table of Content
-
-#Getting Started
-
-##Installing
-
-##Run
-
-##Test
-
-##Other Commands
+```
 
 #License
 
 [MIT](/LICENSE)
-
-#ToDo's
-- set up https://github.com/nickmerwin/node-coveralls

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "",
   "main": "./dist/pigeon.min.js",
-  "typings": "./lib/pigeon.d.ts",
+  "typings": "./pigeon.d.ts",
   "repository": {
     "type": "git",
     "url": "git://github.com/w3tecch/pigeon.js.git"

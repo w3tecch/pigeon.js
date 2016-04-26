@@ -1,8 +1,8 @@
 /*!
- *  @name           pigeon
+ *  @name           pigeonjs
  *  @description    
  * 
- *  @version        1.0.0
+ *  @version        0.0.0
  *  @author         gery.hirschfeld@w3tec.ch
  *  @license        MIT
  * 
@@ -51,59 +51,80 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(1);
+
+
+/***/ },
+/* 1 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/// <reference path="pigeon.d.ts"/>
+	"use strict";
+	var pigeon_ts_1 = __webpack_require__(2);
+	exports.pigeon = pigeon_ts_1.default;
+
+
+/***/ },
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	/**
+	 * @name Pigeon
+	 * @description
+	 * TODO
+	 */
+	var channel_ts_1 = __webpack_require__(3);
+	var Pigeon = (function () {
+	    function Pigeon() {
+	    }
+	    Pigeon.channel = function (name) {
+	        return new channel_ts_1.default(name);
+	    };
+	    return Pigeon;
+	}());
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = Pigeon;
+
+
+/***/ },
+/* 3 */
 /***/ function(module, exports) {
 
 	"use strict";
 	/**
-	 * This is the EventBus service. This service isn't bound to the NG dependency/injection system
-	 *
-	 * @export
-	 * @class EventBus
+	 * @name PigeonChannel
+	 * @description
+	 * TODO
 	 */
-	var EventBus = (function () {
-	    /**
-	     * Creates an instance of EventBus.
-	     */
-	    function EventBus() {
-	        this._callbacks = {};
+	var PigeonChannel = (function () {
+	    function PigeonChannel(name) {
+	        this.name = '';
+	        this.callbacks = {};
+	        this.name = name;
 	    }
-	    /**
-	     * Returns a list off all currently registerd callbacks
-	     *
-	     * @returns {{ [event: string]: IEventBusCallback[] }}
-	     */
-	    EventBus.prototype.list = function () {
-	        return this._callbacks;
+	    PigeonChannel.prototype.list = function () {
+	        return this.callbacks;
 	    };
-	    /**
-	     * Let's you publishes an event to a specific channel
-	     *
-	     * @param {string} channel
-	     * @returns {(...args) => boolean}
-	     */
-	    EventBus.prototype.publish = function (channel) {
+	    PigeonChannel.prototype.publish = function (channel) {
 	        var _this = this;
 	        return function () {
 	            var args = [];
 	            for (var _i = 0; _i < arguments.length; _i++) {
 	                args[_i - 0] = arguments[_i];
 	            }
-	            var callbacks = _this._callbacks[channel] || [];
+	            var callbacks = _this.callbacks[channel] || [];
 	            var size = callbacks.length;
 	            callbacks.forEach(function (cb) { return cb.apply(void 0, args); });
 	            return size < callbacks.length;
 	        };
 	    };
-	    /**
-	     * Let's you subscribe to a specific channel
-	     *
-	     * @param {string} channel
-	     * @returns {(callback: IEventBusCallback) => () => boolean}
-	     */
-	    EventBus.prototype.subscribe = function (channel) {
+	    PigeonChannel.prototype.subscribe = function (channel) {
 	        var _this = this;
 	        return function (callback) {
-	            var callbacks = _this._callbacks[channel] || (_this._callbacks[channel] = []);
+	            var callbacks = _this.callbacks[channel] || (_this.callbacks[channel] = []);
 	            callbacks.push(callback);
 	            // destroy function
 	            return function () {
@@ -112,19 +133,16 @@
 	                    callbacks.splice(idx, 1);
 	                }
 	                if (callbacks.length === 0) {
-	                    delete _this._callbacks[channel];
+	                    delete _this.callbacks[channel];
 	                }
 	                return idx >= 0;
 	            };
 	        };
 	    };
-	    return EventBus;
+	    return PigeonChannel;
 	}());
-	exports.EventBus = EventBus;
-	/**
-	 * Export the Service
-	 */
-	exports.eventBusService = new EventBus();
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = PigeonChannel;
 
 
 /***/ }

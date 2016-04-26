@@ -1,4 +1,4 @@
-/// <reference path="lib/pigeon.d.ts"/>
+/// <reference path="pigeon.d.ts"/>
 
-import {Pigeon} from './lib/pigeon'
-export var pigeon = new Pigeon();
+import Pigeon from './lib/pigeon.ts';
+export var pigeon = Pigeon;

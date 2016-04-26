@@ -37,8 +37,8 @@ module.exports = function makeWebpackConfig(options) {
     config.entry = {}
   } else {
     config.entry = {
-      'pigeon': './index.ts',
-      'pigeon.min': './lib/pigeon.ts'
+      'pigeon': ['./index.ts'],
+      'pigeon.min': ['./index.ts']
     };
   }
 
