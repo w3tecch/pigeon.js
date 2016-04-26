@@ -5,8 +5,11 @@
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 
 #Pigeon.js
+The idea of pigeon.js is to have a light and fast event-bus service. Moreover, to be able to remove your subscriber.
 
 #Install
+This library is available on npm.
+
 ##npm
 ```
 npm install pigeonjs
