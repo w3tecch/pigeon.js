@@ -6,9 +6,33 @@
 
 #Pigeon.js
 
+#Install
+##npm
+```
+npm install pigeonjs
+```
+Add a <script> to your index.html:
+```
+<script src="node_modules/pigeonjs/dist/pigeon.js"></script>
+```
+##bower
+WIP
+
+
 #How to use
 ```
+// Create a new channel
+let channel = pigeon.channel();
 
+// Add a subscriber
+channel.subscribe('user:create')(() => {...});
+
+// Dispose your subscriber
+let disposer = channel.subscribe('user:create')(() => {...});
+disposer();
+
+// Publish your message or date
+channel.publish('test')('an example message');
 ```
 
 #License
