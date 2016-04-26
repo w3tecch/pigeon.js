@@ -23,3 +23,6 @@
 #License
 
 [MIT](/LICENSE)
+
+#ToDo's
+- set up https://github.com/nickmerwin/node-coveralls
