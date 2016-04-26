@@ -19,7 +19,7 @@ npm install pigeonjs
 WIP
 
 #How to use
-```
+```javascript
 // Create a new channel
 let channel = pigeon.channel();
 
