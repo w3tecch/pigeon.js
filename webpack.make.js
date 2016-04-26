@@ -134,9 +134,19 @@ module.exports = function makeWebpackConfig(options) {
     resourcePath: 'src'
   };
 
+  /**
+   * Sinon
+   * This two config items are needed to be able to use sinon in your tests
+   */
   config.module.noParse = [
     /\/sinon.js/
   ];
+
+  config.resolve = {
+    alias: {
+      'sinon': 'sinon/pkg/sinon'
+    }
+  };
 
   /**
    * Plugins
