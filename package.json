@@ -1,6 +1,6 @@
 {
-  "name": "pigeon",
-  "version": "1.0.0",
+  "name": "pigeonjs",
+  "version": "0.0.0",
   "description": "",
   "main": "./dist/pigeon.min.js",
   "typings": "./lib/pigeon.d.ts",
