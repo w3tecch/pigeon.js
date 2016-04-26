@@ -3,5 +3,5 @@ node_js:
   - "0.10"
 
 notifications:
-  email: false
+  email: true
   hipchat: f48dd51258b5e05c868a79b1e9f426@w3tecch/2679708
