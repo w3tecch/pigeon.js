@@ -14,7 +14,7 @@ declare namespace pigeon {
      *
      * @param name
      */
-    channel(name: string): IChannel;
+    channel(name?: string): IChannel;
   }
 
   interface IChannel {

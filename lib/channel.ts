@@ -5,10 +5,10 @@
  */
 class PigeonChannel implements pigeon.IChannel {
 
-  private name: string = '';
+  private name: string;
   private callbacks: pigeon.IEventCallbacks = {};
 
-  constructor(name: string) {
+  constructor(name?: string) {
     this.name = name;
   }
 
@@ -29,9 +29,9 @@ class PigeonChannel implements pigeon.IChannel {
     };
   }
 
-  public subscribe(channel: string): (callback: pigeon.IEventCallback) => () => boolean {
+  public subscribe(item: string): (callback: pigeon.IEventCallback) => () => boolean {
     return (callback: pigeon.IEventCallback) => {
-      let callbacks = this.callbacks[channel] || (this.callbacks[channel] = []);
+      let callbacks = this.callbacks[item] || (this.callbacks[item] = []);
       callbacks.push(callback);
 
       // destroy function
@@ -42,7 +42,7 @@ class PigeonChannel implements pigeon.IChannel {
         }
 
         if (callbacks.length === 0) {
-          delete this.callbacks[channel];
+          delete this.callbacks[item];
         }
 
         return idx >= 0;

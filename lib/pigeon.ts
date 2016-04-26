@@ -7,7 +7,7 @@ import PigeonChannel from './channel.ts';
 
 class Pigeon {
 
-  public static channel(name: string): pigeon.IChannel {
+  public static channel(name?: string): pigeon.IChannel {
     return new PigeonChannel(name);
   }
 
