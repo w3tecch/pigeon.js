@@ -1,6 +1,6 @@
 {
   "name": "pigeonjs",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "This is an in-memory message bus. Very slim and fast",
   "main": "./dist/pigeon.min.js",
   "typings": "./pigeon.d.ts",
