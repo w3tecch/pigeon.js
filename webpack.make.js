@@ -54,8 +54,18 @@ module.exports = function makeWebpackConfig(options) {
     config.output = {
       path: helpers.root('dist'),
       filename: '[name].js',
-      sourceMapFilename: '[name].map'
+      sourceMapFilename: '[name].map',
+      // export itself to a global var
+      libraryTarget: "var",
+      // name of the global var: "Foo"
+      library: "pigeon"
     };
+
+    // config.externals = {
+    //   // require("jquery") is external and available
+    //   //  on the global var jQuery
+    //   "pigeon": "pigeon"
+    // };
     //config.output = {
     //  // Absolute output directory
     //  path: __dirname + '/public',
@@ -121,6 +131,10 @@ module.exports = function makeWebpackConfig(options) {
         loader: 'ts-loader',
         exclude: [/\.(spec|e2e|async)\.ts$/]
       }
+      // {
+      //   test: require.resolve("pigeon"),
+      //   loader: "expose?pigeon"
+      // }
     );
   }
 

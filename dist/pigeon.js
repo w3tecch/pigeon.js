@@ -2,11 +2,12 @@
  *  @name           pigeonjs
  *  @description    This is an in-memory message bus. Very slim and fast
  * 
- *  @version        0.0.0
+ *  @version        0.0.1
  *  @author         gery.hirschfeld@w3tec.ch
  *  @license        MIT
  * 
  */
+var pigeon =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -63,7 +64,8 @@
 	/// <reference path="pigeon.d.ts"/>
 	"use strict";
 	var pigeon_ts_1 = __webpack_require__(2);
-	exports.pigeon = pigeon_ts_1.default;
+	var pigeon = new pigeon_ts_1.default();
+	module.exports = pigeon;
 
 
 /***/ },
@@ -79,8 +81,26 @@
 	var channel_ts_1 = __webpack_require__(3);
 	var Pigeon = (function () {
 	    function Pigeon() {
+	        this.channels = {};
 	    }
-	    Pigeon.channel = function (name) {
+	    Pigeon.prototype.has = function (channelName) {
+	        return (!!this.channels[channelName] && this.channels[channelName].activated);
+	    };
+	    Pigeon.prototype.channel = function (name) {
+	        if (this.has(name)) {
+	            this.channels[name].activated = true;
+	        }
+	        else {
+	            this.channels[name] = new channel_ts_1.default(name);
+	        }
+	        return this.channels[name];
+	    };
+	    Pigeon.prototype.remove = function (channelName) {
+	        if (this.has(channelName)) {
+	            this.channels[channelName].activated = false;
+	        }
+	    };
+	    Pigeon.prototype.createCustomChannel = function (name) {
 	        return new channel_ts_1.default(name);
 	    };
 	    return Pigeon;
@@ -101,15 +121,17 @@
 	 */
 	var PigeonChannel = (function () {
 	    function PigeonChannel(name) {
+	        this.activated = true;
 	        this.callbacks = {};
 	        this.name = name;
 	    }
-	    PigeonChannel.prototype.getName = function () {
-	        return this.name;
-	    };
-	    PigeonChannel.prototype.getList = function () {
-	        return this.callbacks;
-	    };
+	    Object.defineProperty(PigeonChannel.prototype, "subscribers", {
+	        get: function () {
+	            return this.callbacks;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
 	    PigeonChannel.prototype.publish = function (item) {
 	        var _this = this;
 	        return function () {
@@ -117,30 +139,41 @@
 	            for (var _i = 0; _i < arguments.length; _i++) {
 	                args[_i - 0] = arguments[_i];
 	            }
-	            var callbacks = _this.callbacks[item] || [];
-	            var size = callbacks.length;
-	            callbacks.forEach(function (cb) { return cb.apply(void 0, args); });
-	            return size < callbacks.length;
+	            if (_this.activated) {
+	                var callbacks = _this.callbacks[item] || [];
+	                var size = callbacks.length;
+	                callbacks.forEach(function (cb) { return cb.apply(void 0, args); });
+	                return size < callbacks.length;
+	            }
+	            else {
+	                throw new Error(PigeonChannel.ERR_MSG_NOT_ACTIVATED);
+	            }
 	        };
 	    };
 	    PigeonChannel.prototype.subscribe = function (item) {
 	        var _this = this;
 	        return function (callback) {
-	            var callbacks = _this.callbacks[item] || (_this.callbacks[item] = []);
-	            callbacks.push(callback);
-	            // destroy function
-	            return function () {
-	                var idx = callbacks.indexOf(callback);
-	                if (idx >= 0) {
-	                    callbacks.splice(idx, 1);
-	                }
-	                if (callbacks.length === 0) {
-	                    delete _this.callbacks[item];
-	                }
-	                return idx >= 0;
-	            };
+	            if (_this.activated) {
+	                var callbacks_1 = _this.callbacks[item] || (_this.callbacks[item] = []);
+	                callbacks_1.push(callback);
+	                // Disposer function
+	                return function () {
+	                    var idx = callbacks_1.indexOf(callback);
+	                    if (idx >= 0) {
+	                        callbacks_1.splice(idx, 1);
+	                    }
+	                    if (callbacks_1.length === 0) {
+	                        delete _this.callbacks[item];
+	                    }
+	                    return idx >= 0;
+	                };
+	            }
+	            else {
+	                throw new Error(PigeonChannel.ERR_MSG_NOT_ACTIVATED);
+	            }
 	        };
 	    };
+	    PigeonChannel.ERR_MSG_NOT_ACTIVATED = 'Channel is currently not activated';
 	    return PigeonChannel;
 	}());
 	Object.defineProperty(exports, "__esModule", { value: true });

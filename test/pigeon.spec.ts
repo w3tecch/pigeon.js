@@ -1,22 +1,43 @@
 import * as chai from 'chai';
-export const expect = chai.expect;
-export const should = chai.should();
+// import * as sinon from 'sinon';
 
-import {pigeon} from './../index.ts';
+export const expect = chai.expect;
+// export const should = chai.should();
+
+import * as pigeon from './../index.ts';
+import PigeonChannel from './../lib/channel.ts';
 
 describe('pigeon.ts', () => {
 
-  let channelOne, channelTwo;
-  before(() => {
-    channelOne = pigeon.channel('one');
-    channelTwo = pigeon.channel('two');
-  });
+  describe('Create new empty channel and removes it', () => {
 
-  describe('#channel()', () => {
-    it('channel have to given names', () => {
-      channelOne.getName().should.equal('one');
-      channelTwo.getName().should.equal('two');
+    let name = 'test-001';
+    it('create new channel', () => {
+      pigeon.channel(name);
+      expect(pigeon.channels[name]).to.be.an.instanceof(PigeonChannel);
     });
+
+    it('pigeon has the new channel', () => {
+      expect(pigeon.has(name));
+    });
+
+    it('channel is activated', () => {
+      expect(pigeon.channel(name).activated);
+    });
+
+    it('channel has no subscribers', () => {
+      expect(pigeon.channel(name).subscribers).to.be.empty;
+    });
+
+    it('remove channel deactivates it but not removes is', () => {
+      pigeon.remove(name);
+      expect(pigeon.channels[name].activated).to.be.false;
+    });
+
+    it('pigeon does not have the new channel anymore', () => {
+      expect(pigeon.has(name)).to.be.false;
+    });
+
   });
 
 });

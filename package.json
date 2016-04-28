@@ -19,10 +19,7 @@
     "test:live": "./node_modules/.bin/karma start --auto-watch --no-single-run"
   },
   "keywords": [
-    "Events",
-    "Event-bus",
-    "TypeScript",
-    "JavaScript"
+    "events", "mediator", "publisher", "subscriber", "bus", "messaging"
   ],
   "author": "gery.hirschfeld@w3tec.ch",
   "contributors": [
