@@ -15,7 +15,7 @@ npm install pigeonjs
 
 and include the library into your application
 ```html
-<script src="https://raw.github.com/jonnyreeves/js-logger/master/src/logger.min.js"></script>
+<script src="https://github.com/w3tecch/pigeon.js/blob/master/dist/pigeon.min.js"></script>
 ```
 
 #Usage
