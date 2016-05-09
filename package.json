@@ -1,6 +1,6 @@
 {
   "name": "pigeonjs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "This is an in-memory message bus. Very slim and fast",
   "main": "./dist/pigeon.min.js",
   "typings": "./pigeon.d.ts",
@@ -19,10 +19,7 @@
     "test:live": "./node_modules/.bin/karma start --auto-watch --no-single-run"
   },
   "keywords": [
-    "Events",
-    "Event-bus",
-    "TypeScript",
-    "JavaScript"
+    "events", "mediator", "publisher", "subscriber", "bus", "messaging"
   ],
   "author": "gery.hirschfeld@w3tec.ch",
   "contributors": [
