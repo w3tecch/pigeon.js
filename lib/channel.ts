@@ -20,19 +20,6 @@ class PigeonChannel implements pigeon.IChannel {
     return this.callbacks;
   }
 
-  public publish(item: string): (...args) => boolean {
-    return (...args) => {
-      if (this.activated) {
-        let callbacks = this.callbacks[item] || [];
-        let size = callbacks.length;
-        callbacks.forEach(cb => cb(...args));
-        return size < callbacks.length;
-      } else {
-        throw new Error(PigeonChannel.ERR_MSG_NOT_ACTIVATED);
-      }
-    };
-  }
-
   public subscribe(item: string): (callback: pigeon.IEventCallback) => () => boolean {
     return (callback: pigeon.IEventCallback) => {
       if (this.activated) {
@@ -52,6 +39,19 @@ class PigeonChannel implements pigeon.IChannel {
 
           return idx >= 0;
         };
+      } else {
+        throw new Error(PigeonChannel.ERR_MSG_NOT_ACTIVATED);
+      }
+    };
+  }
+
+  public publish(item: string): (...args) => boolean {
+    return (...args) => {
+      if (this.activated) {
+        let callbacks = this.callbacks[item] || [];
+        let size = callbacks.length;
+        callbacks.forEach(cb => cb(...args));
+        return size < callbacks.length;
       } else {
         throw new Error(PigeonChannel.ERR_MSG_NOT_ACTIVATED);
       }
