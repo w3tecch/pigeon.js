@@ -7,20 +7,19 @@
 #Pigeon.js
 The idea of pigeon.js is to have a light and fast event-bus service. Moreover, to be able to remove your subscriber.
 
-#Install
-This library is available on npm.
-
-##npm
+#Installation
+Install via NPM
 ```
 npm install pigeonjs
 ```
 
-##bower
-WIP
+and include the library into your application
+```html
+<script src="https://raw.github.com/jonnyreeves/js-logger/master/src/logger.min.js"></script>
+```
 
-#How to use
+#Usage
 
-##Global
 ```javascript
 // Register a new channel
 pigeon.channel('my-channel');
@@ -47,7 +46,7 @@ pigeon.channel('my-channel').publish('item:updated', data);
 let channel = pigeon.channel();
 ```
 
-##Local custom channel
+## Custom channel
 
 ```javascript
 // Create your own custom channel
