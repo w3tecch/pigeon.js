@@ -19,19 +19,49 @@ npm install pigeonjs
 WIP
 
 #How to use
+
+##Global
 ```javascript
+// Register a new channel
+pigeon.channel('my-channel');
+
+// Verify if my channel was created
+pigeon.has('my-channel'); // returns a boolean
+
+// Get a list of all subscribers of my channel
+pigeon.channel('my-channel').subscribers;
+
+// Get a list of all subscribers of my channel
+pigeon.channel('my-channel').subscribe('item:updated', () => {
+  // Callback function
+});
+
+// Removes my subscriber
+let disposer = pigeon.channel('my-channel').subscribe('item:updated', () => {...});
+disposer();
+
+// Publish an event
+pigeon.channel('my-channel').publish('item:updated', data);
+
 // Create a new channel
 let channel = pigeon.channel();
+```
+
+##Local custom channel
+
+```javascript
+// Create your own custom channel
+let customChannel = pigeon.createCustomChannel()
 
 // Add a subscriber
-channel.subscribe('user:create')(() => {...});
+customChannel.subscribe('user:create')(() => {...});
 
 // Dispose your subscriber
-let disposer = channel.subscribe('user:create')(() => {...});
+let disposer = customChannel.subscribe('user:create')(() => {...});
 disposer();
 
 // Publish your message or date
-channel.publish('user:create')('an example message');
+customChannel.publish('user:create')('an example message');
 ```
 
 #License
