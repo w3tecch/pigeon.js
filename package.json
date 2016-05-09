@@ -1,6 +1,6 @@
 {
   "name": "pigeonjs",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "This is an in-memory message bus. Very slim and fast",
   "main": "./dist/pigeon.min.js",
   "typings": "./pigeon.d.ts",
@@ -35,8 +35,8 @@
     "chai": "^3.5.0",
     "karma": "^0.13.21",
     "karma-chai": "^0.1.0",
-    "karma-coverage": "^0.5.3",
-    "karma-growl-reporter": "^0.1.1",
+    "karma-coverage": "^1.0.0",
+    "karma-growl-reporter": "^1.0.0",
     "karma-mocha": "^1.0.1",
     "karma-phantomjs-launcher": "^1.0.0",
     "karma-sinon": "^1.0.4",

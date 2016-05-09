@@ -2,7 +2,7 @@
  *  @name           pigeonjs
  *  @description    This is an in-memory message bus. Very slim and fast
  * 
- *  @version        0.0.2
+ *  @version        0.0.3
  *  @author         gery.hirschfeld@w3tec.ch
  *  @license        MIT
  * 
