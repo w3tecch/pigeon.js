@@ -2,7 +2,7 @@
  *  @name           pigeonjs
  *  @description    This is an in-memory message bus. Very slim and fast
  * 
- *  @version        0.0.1
+ *  @version        0.0.2
  *  @author         gery.hirschfeld@w3tec.ch
  *  @license        MIT
  * 
@@ -132,24 +132,6 @@ var pigeon =
 	        enumerable: true,
 	        configurable: true
 	    });
-	    PigeonChannel.prototype.publish = function (item) {
-	        var _this = this;
-	        return function () {
-	            var args = [];
-	            for (var _i = 0; _i < arguments.length; _i++) {
-	                args[_i - 0] = arguments[_i];
-	            }
-	            if (_this.activated) {
-	                var callbacks = _this.callbacks[item] || [];
-	                var size = callbacks.length;
-	                callbacks.forEach(function (cb) { return cb.apply(void 0, args); });
-	                return size < callbacks.length;
-	            }
-	            else {
-	                throw new Error(PigeonChannel.ERR_MSG_NOT_ACTIVATED);
-	            }
-	        };
-	    };
 	    PigeonChannel.prototype.subscribe = function (item) {
 	        var _this = this;
 	        return function (callback) {
@@ -167,6 +149,24 @@ var pigeon =
 	                    }
 	                    return idx >= 0;
 	                };
+	            }
+	            else {
+	                throw new Error(PigeonChannel.ERR_MSG_NOT_ACTIVATED);
+	            }
+	        };
+	    };
+	    PigeonChannel.prototype.publish = function (item) {
+	        var _this = this;
+	        return function () {
+	            var args = [];
+	            for (var _i = 0; _i < arguments.length; _i++) {
+	                args[_i - 0] = arguments[_i];
+	            }
+	            if (_this.activated) {
+	                var callbacks = _this.callbacks[item] || [];
+	                var size = callbacks.length;
+	                callbacks.forEach(function (cb) { return cb.apply(void 0, args); });
+	                return size < callbacks.length;
 	            }
 	            else {
 	                throw new Error(PigeonChannel.ERR_MSG_NOT_ACTIVATED);
