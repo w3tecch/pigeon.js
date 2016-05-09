@@ -1,14 +1,8 @@
 'use strict';
 
-//pigeon.js
-
 var webpack = require('webpack');
-// var autoprefixer = require('autoprefixer');
-// var HtmlWebpackPlugin = require('html-webpack-plugin');
-// var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var yargs = require('yargs').argv;
 var path = require('path');
-
 var helpers = require(process.cwd() + '/webpack.helpers.js');
 
 module.exports = function makeWebpackConfig(options) {
@@ -60,28 +54,6 @@ module.exports = function makeWebpackConfig(options) {
       // name of the global var: "Foo"
       library: "pigeon"
     };
-
-    // config.externals = {
-    //   // require("jquery") is external and available
-    //   //  on the global var jQuery
-    //   "pigeon": "pigeon"
-    // };
-    //config.output = {
-    //  // Absolute output directory
-    //  path: __dirname + '/public',
-    //
-    //  // Output path from the view of the page
-    //  // Uses webpack-dev-server in development
-    //  publicPath: BUILD ? '/' : 'http://localhost:8080/',
-    //
-    //  // Filename for entry points
-    //  // Only adds hash in build mode
-    //  filename: BUILD ? '[name].[hash].js' : '[name].bundle.js',
-    //
-    //  // Filename for non-entry points
-    //  // Only adds hash in build mode
-    //  chunkFilename: BUILD ? '[name].[hash].js' : '[name].bundle.js'
-    //}
   }
 
   /**
@@ -131,10 +103,6 @@ module.exports = function makeWebpackConfig(options) {
         loader: 'ts-loader',
         exclude: [/\.(spec|e2e|async)\.ts$/]
       }
-      // {
-      //   test: require.resolve("pigeon"),
-      //   loader: "expose?pigeon"
-      // }
     );
   }
 
@@ -169,27 +137,9 @@ module.exports = function makeWebpackConfig(options) {
    */
   config.plugins = [];
 
-  // // Automatically move all modules defined outside of application directory to vendor bundle.
-  // // If you are using more complicated project structure, consider to specify common chunks manually.
-  // if (!TEST) {
-  //   config.plugins.push(new webpack.optimize.CommonsChunkPlugin({
-  //     name: 'vendor',
-  //     minChunks: function (module, count) {
-  //       return module.resource && module.resource.indexOf(path.resolve(__dirname, 'src')) === -1;
-  //     }
-  //   }));
-  // }
-
   if (BUILD) {
     config.plugins.push(new webpack.BannerPlugin(helpers.getBanner()));
   }
-
-  // // Adds webpack HMR support. It act's like livereload,
-  // // reloading page after webpack rebuilt modules.
-  // // It also updates stylesheets and inline assets without page reloading.
-  // if (!TEST && !BUILD) {
-  //   config.plugins.push(new webpack.HotModuleReplacementPlugin());
-  // }
 
   // Add build specific plugins
   if (BUILD) {
@@ -216,19 +166,6 @@ module.exports = function makeWebpackConfig(options) {
       })
     )
   }
-
-  // /**
-  //  * Dev server configuration
-  //  * Reference: http://webpack.github.io/docs/configuration.html#devserver
-  //  * Reference: http://webpack.github.io/docs/webpack-dev-server.html
-  //  */
-  // config.devServer = {
-  //   port: helpers.getMetadata().port,
-  //   host: helpers.getMetadata().host,
-  //   // contentBase: 'src/',
-  //   historyApiFallback: true,
-  //   watchOptions: {aggregateTimeout: 300, poll: 1000}
-  // };
 
   return config;
 };
