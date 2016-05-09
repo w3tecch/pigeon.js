@@ -1,8 +1,6 @@
 import * as chai from 'chai';
-// import * as sinon from 'sinon';
 
 export const expect = chai.expect;
-// export const should = chai.should();
 
 import * as pigeon from './../index.ts';
 import PigeonChannel from './../lib/channel.ts';
