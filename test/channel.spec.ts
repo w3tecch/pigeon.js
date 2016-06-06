@@ -5,7 +5,7 @@ export const expect = chai.expect;
 
 import * as pigeon from './../index.ts';
 
-describe('channel.ts', () => {
+describe('channel', () => {
 
   let channelOne, channelEmpty;
   before(() => {
@@ -48,7 +48,8 @@ describe('channel.ts', () => {
       let channel = pigeon.channel('four');
       let cb = sinon.spy();
       let disposal = channel.subscribe('test')(cb);
-      expect(disposal).exist;
+      expect(disposal).should.not.be.undefined;
+      expect(disposal).to.be.an.instanceof(Function);
     });
 
     it('the disposal removes the entry in the list', () => {

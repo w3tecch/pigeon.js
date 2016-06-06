@@ -32,7 +32,7 @@ declare namespace pigeon {
      *
      * @param name
      */
-    channel(name?: string): IChannel;
+    channel(name?: string): pigeon.IChannel;
     /**
      * Tells you if this channel is active and exists.
      *
@@ -40,32 +40,15 @@ declare namespace pigeon {
      */
     has(channelName: string): boolean;
     /**
-     * Reactivates or creates a channel.
-     *
-     * @param name
-     */
-    channel(name: string): pigeon.IChannel;
-    /**
-     * Deactivates a channel. So if will use it again
+     * Deletes a channel. So if will use it again
      * the subscriber are still available form the last time.
      *
      * @param channelName
      */
     remove(channelName: string): void;
-    /**
-     * Create a new custom channel. This will be outside of this
-     * library and must be stored somewhere else.
-     *
-     * @param name
-     */
-    createCustomChannel(name?: string): pigeon.IChannel;
   }
 
   interface IChannel {
-    /**
-     * Defines if the channel is activated or not
-     */
-    activated: boolean;
     /**
      * Returns the name of the created channel
      */
