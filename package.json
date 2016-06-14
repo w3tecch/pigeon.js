@@ -19,7 +19,12 @@
     "test:live": "./node_modules/.bin/karma start --auto-watch --no-single-run"
   },
   "keywords": [
-    "events", "mediator", "publisher", "subscriber", "bus", "messaging"
+    "events",
+    "mediator",
+    "publisher",
+    "subscriber",
+    "bus",
+    "messaging"
   ],
   "author": "gery.hirschfeld@w3tec.ch",
   "contributors": [
@@ -53,7 +58,7 @@
     "tslint": "^3.7.1",
     "tslint-loader": "^2.1.3",
     "typescript": "^1.8.10",
-    "typings": "^0.8.1",
+    "typings": "^1.0.4",
     "webpack": "^1.13.0",
     "yargs": "^4.6.0"
   }

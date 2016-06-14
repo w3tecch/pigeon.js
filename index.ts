@@ -1,4 +1,4 @@
-/// <reference path="pigeon.d.ts"/>
+/// <reference path="./lib/pigeon.d.ts"/>
 
 import Pigeon from './lib/pigeon.ts';
 let pigeon = new Pigeon();
