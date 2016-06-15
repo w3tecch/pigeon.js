@@ -46,23 +46,6 @@ pigeon.channel('my-channel').publish('item:updated', data);
 let channel = pigeon.channel();
 ```
 
-## Custom channel
-
-```javascript
-// Create your own custom channel
-let customChannel = pigeon.createCustomChannel()
-
-// Add a subscriber
-customChannel.subscribe('user:create')(() => {...});
-
-// Dispose your subscriber
-let disposer = customChannel.subscribe('user:create')(() => {...});
-disposer();
-
-// Publish your message or date
-customChannel.publish('user:create')('an example message');
-```
-
 #License
 
 [MIT](/LICENSE)
