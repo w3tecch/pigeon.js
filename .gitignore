@@ -4,6 +4,7 @@ node_modules/
 build/
 .DS_Store
 .idea
+.vscode
 npm-debug.log
 /typings
 /test/**/*.js

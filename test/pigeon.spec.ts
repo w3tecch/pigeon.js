@@ -9,30 +9,26 @@ describe('pigeon.ts', () => {
 
   describe('Create new empty channel and removes it', () => {
 
-    let name = 'test-001';
-    it('create new channel', () => {
+    let name = 'test-channel';
+    it(`create new channel ${name}`, () => {
       pigeon.channel(name);
       expect(pigeon.channels[name]).to.be.an.instanceof(PigeonChannel);
     });
 
-    it('pigeon has the new channel', () => {
+    it(`pigeon has the new channel named ${name}`, () => {
       expect(pigeon.has(name));
     });
 
-    it('channel is activated', () => {
-      expect(pigeon.channel(name).activated);
-    });
-
-    it('channel has no subscribers', () => {
+    it(`channel ${name} has no subscribers`, () => {
       expect(pigeon.channel(name).subscribers).to.be.empty;
     });
 
-    it('remove channel deactivates it but not removes is', () => {
+    it(`remove channel ${name}`, () => {
       pigeon.remove(name);
-      expect(pigeon.channels[name].activated).to.be.false;
+      expect(pigeon.channels[name]).to.be.undefined;
     });
 
-    it('pigeon does not have the new channel anymore', () => {
+    it(`pigeon does not have the channel named ${name} anymore`, () => {
       expect(pigeon.has(name)).to.be.false;
     });
 
