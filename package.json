@@ -14,7 +14,6 @@
   "scripts": {
     "build": "npm run build:dev",
     "build:dev": "./node_modules/.bin/webpack --config webpack.build.js --progress --profile --colors --display-error-details --display-cached --env",
-    "build:prod": "./node_modules/.bin/webpack --config webpack.build.js --progress --profile --colors --display-error-details --display-cached --env prod",
     "test": "./node_modules/.bin/karma start --no-auto-watch --single-run",
     "test:live": "./node_modules/.bin/karma start --auto-watch --no-single-run"
   },
@@ -26,11 +25,17 @@
     "bus",
     "messaging"
   ],
-  "author": "gery.hirschfeld@w3tec.ch",
+  "author": "w3tec.ch <info@w3tec.ch>",
   "contributors": [
     {
+      "name": "Gery Hirschfeld",
+      "email": "gery.hirschfeld@w3tec.ch",
+      "url": "https://github.com/hirsch88"
+    },
+    {
       "name": "David Weber",
-      "url": "http://github.com/dweber19"
+      "email": "david.weber@w3tec.ch",
+      "url": "https://github.com/dweber019"
     }
   ],
   "license": "MIT",
@@ -52,7 +57,6 @@
     "mocha": "^2.4.5",
     "path": "^0.12.7",
     "phantomjs": "^2.1.7",
-    "phantomjs-prebuilt": "^2.1.7",
     "sinon": "^1.17.3",
     "ts-loader": "^0.8.2",
     "tslint": "^3.7.1",
