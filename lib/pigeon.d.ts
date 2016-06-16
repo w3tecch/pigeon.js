@@ -1,4 +1,4 @@
-declare namespace pigeon {
+declare namespace pigeonjs {
 
   /**
    * Callback of the subscriber.
@@ -11,7 +11,7 @@ declare namespace pigeon {
    * Collection of all the subscribe callbacks.
    */
   interface IEventCallbacks {
-    [item: string]: pigeon.IEventCallback[]
+    [item: string]: pigeonjs.IEventCallback[]
   }
 
   /**
@@ -19,20 +19,20 @@ declare namespace pigeon {
    * stored in the pigeon object.
    */
   interface IChannelList {
-    [channel: string]: pigeon.IChannel
+    [channel: string]: pigeonjs.IChannel;
   }
 
   interface IPigeon {
     /**
      * Stores all registered channels.
      */
-    channels: pigeon.IChannelList;
+    channels: pigeonjs.IChannelList;
     /**
      * Create a new channel and returns it.
      *
      * @param name
      */
-    channel(name?: string): pigeon.IChannel;
+    channel(name?: string): pigeonjs.IChannel;
     /**
      * Tells you if this channel is active and exists.
      *
@@ -68,8 +68,14 @@ declare namespace pigeon {
      *
      * @param item This is used as a key for the events
      */
-    subscribe(item: string): (callback: pigeon.IEventCallback) => () => boolean;
+    subscribe(item: string): (callback: pigeonjs.IEventCallback) => () => boolean;
   }
 
 
+}
+
+declare var Pigeonjs: pigeonjs.IPigeon;
+
+declare module "pigeonjs" {
+    export default Pigeonjs;
 }
