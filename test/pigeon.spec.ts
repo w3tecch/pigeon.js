@@ -2,7 +2,7 @@ import * as chai from 'chai';
 
 export const expect = chai.expect;
 
-import * as pigeon from './../index.ts';
+import pigeon from './../index.ts';
 import PigeonChannel from './../lib/channel.ts';
 
 describe('pigeon.ts', () => {

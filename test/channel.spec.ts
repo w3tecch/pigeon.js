@@ -3,7 +3,7 @@ import * as sinon from 'sinon';
 
 export const expect = chai.expect;
 
-import * as pigeon from './../index.ts';
+import pigeon from './../index.ts';
 
 describe('channel', () => {
 
