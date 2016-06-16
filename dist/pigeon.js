@@ -2,13 +2,22 @@
  *  @name           pigeonjs
  *  @description    This is an in-memory message bus. Very slim and fast
  * 
- *  @version        0.0.7
+ *  @version        0.0.8
  *  @author         w3tec.ch <info@w3tec.ch>
  *  @license        MIT
  * 
  */
-var pigeon =
-/******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else {
+		var a = factory();
+		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
+	}
+})(this, function() {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -146,5 +155,7 @@ var pigeon =
 
 
 /***/ }
-/******/ ]);
+/******/ ])
+});
+;
 //# sourceMappingURL=pigeon.map

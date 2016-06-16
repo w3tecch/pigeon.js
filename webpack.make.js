@@ -31,8 +31,8 @@ module.exports = function makeWebpackConfig(options) {
     config.entry = {}
   } else {
     config.entry = {
-      'pigeon': ['./index.ts'],
-      'pigeon.min': ['./index.ts']
+      'pigeon': ['./lib/index.ts'],
+      'pigeon.min': ['./lib/index.ts']
     };
   }
 
@@ -50,9 +50,7 @@ module.exports = function makeWebpackConfig(options) {
       filename: '[name].js',
       sourceMapFilename: '[name].map',
       // export itself to a global var
-      libraryTarget: "var",
-      // name of the global var: "Foo"
-      library: "pigeon"
+      libraryTarget: "umd"
     };
   }
 

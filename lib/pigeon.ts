@@ -5,15 +5,15 @@
  */
 import PigeonChannel from './channel.ts';
 
-class Pigeon implements pigeon.IPigeon {
+class Pigeon implements pigeonjs.IPigeon {
 
-  public channels: pigeon.IChannelList = {};
+  public channels: pigeonjs.IChannelList = {};
 
   public has(channelName: string): boolean {
     return !!this.channels[channelName];
   }
 
-  public channel(name: string): pigeon.IChannel {
+  public channel(name: string): pigeonjs.IChannel {
     return !this.has(name) && (this.channels[name] = new PigeonChannel(name)) && this.channels[name]  || this.channels[name];
   }
 
