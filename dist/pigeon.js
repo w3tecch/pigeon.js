@@ -2,8 +2,8 @@
  *  @name           pigeonjs
  *  @description    This is an in-memory message bus. Very slim and fast
  * 
- *  @version        0.0.6
- *  @author         gery.hirschfeld@w3tec.ch
+ *  @version        0.0.7
+ *  @author         w3tec.ch <info@w3tec.ch>
  *  @license        MIT
  * 
  */
@@ -61,7 +61,6 @@ var pigeon =
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/// <reference path="./lib/pigeon.d.ts"/>
 	"use strict";
 	var pigeon_ts_1 = __webpack_require__(2);
 	Object.defineProperty(exports, "__esModule", { value: true });
@@ -73,11 +72,6 @@ var pigeon =
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	/**
-	 * @name Pigeon
-	 * @description
-	 * TODO
-	 */
 	var channel_ts_1 = __webpack_require__(3);
 	var Pigeon = (function () {
 	    function Pigeon() {
@@ -103,11 +97,6 @@ var pigeon =
 /***/ function(module, exports) {
 
 	"use strict";
-	/**
-	 * @name PigeonChannel
-	 * @description
-	 * TODO
-	 */
 	var PigeonChannel = (function () {
 	    function PigeonChannel(name) {
 	        this.name = name;
@@ -125,7 +114,6 @@ var pigeon =
 	        return function (callback) {
 	            var callbacks = _this.callbacks[item] || (_this.callbacks[item] = []);
 	            callbacks.push(callback);
-	            // Disposer function
 	            return function () {
 	                var idx = callbacks.indexOf(callback);
 	                if (idx >= 0) {
