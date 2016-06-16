@@ -2,7 +2,7 @@
  *  @name           pigeonjs
  *  @description    This is an in-memory message bus. Very slim and fast
  * 
- *  @version        0.0.4
+ *  @version        0.0.6
  *  @author         gery.hirschfeld@w3tec.ch
  *  @license        MIT
  * 
@@ -64,8 +64,8 @@ var pigeon =
 	/// <reference path="./lib/pigeon.d.ts"/>
 	"use strict";
 	var pigeon_ts_1 = __webpack_require__(2);
-	var pigeon = new pigeon_ts_1.default();
-	module.exports = pigeon;
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = new pigeon_ts_1.default();
 
 
 /***/ },
