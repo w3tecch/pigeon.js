@@ -3,17 +3,17 @@
  * @description
  * TODO
  */
-class PigeonChannel implements pigeon.IChannel {
-  private callbacks: pigeon.IEventCallbacks = {};
+class PigeonChannel implements pigeonjs.IChannel {
+  private callbacks: pigeonjs.IEventCallbacks = {};
 
   constructor(public name?: string) { }
 
-  public get subscribers(): pigeon.IEventCallbacks {
+  public get subscribers(): pigeonjs.IEventCallbacks {
     return this.callbacks;
   }
 
-  public subscribe(item: string): (callback: pigeon.IEventCallback) => () => boolean {
-    return (callback: pigeon.IEventCallback) => {
+  public subscribe(item: string): (callback: pigeonjs.IEventCallback) => () => boolean {
+    return (callback: pigeonjs.IEventCallback) => {
       let callbacks = this.callbacks[item] || (this.callbacks[item] = []);
       callbacks.push(callback);
 
